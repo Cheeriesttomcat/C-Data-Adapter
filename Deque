@@ -1,0 +1,151 @@
+#ifndef DEQUE_CPP
+#define DEQUE_CPP
+//*********************************************************************************
+// Implementation for a deque	
+//
+//
+// Last modified 10/22/19 Howard Akers
+//*********************************************************************************
+#include "Deque.h"
+
+//*********************************************************************************
+// Constructor
+//
+//*********************************************************************************
+template <typename E>
+Deque<E>::Deque() 
+{			// constructor
+	n = 0;					// initially empty
+	header = new Node;				// create sentinels
+	trailer = new Node;
+	holder = new Node;
+	header->next = trailer;			// have them point to each other
+	trailer->prev = header;
+	holder->next = trailer;
+	holder->prev = header;
+}
+
+//*********************************************************************************
+// Destructor
+//
+//*********************************************************************************
+template <typename E>
+Deque<E>::~Deque()
+{
+	while (Deque<E>::empty() != true)
+	{
+		Deque<E>::eraseFront();
+	}
+	delete header;
+	delete trailer;
+	delete holder;
+}
+
+//*********************************************************************************
+// Put it in front
+//
+//*********************************************************************************
+template <typename E>
+void Deque<E>::insertFront(const E& e)
+{
+	Node* v = new Node;				// new node to insert
+	v->elem = e;
+	v->next = header->next;
+	v->prev = header;
+	holder = v->next;
+	holder->prev = v;
+	header->next = v;
+	n++;
+}
+
+//*********************************************************************************
+// Put it in back
+//
+//*********************************************************************************
+template <typename E>
+void Deque<E>::insertBack(const E& e)
+{
+	Node* v = new Node;				// new node to insert
+	v->elem = e;
+	v->prev = trailer->prev;
+	v->next = trailer;
+	holder = v->prev;
+	holder->next = v;
+	trailer->prev = v;
+	n++;
+}
+
+//*********************************************************************************
+// Erase the front
+//
+//*********************************************************************************
+template <typename E>
+const E& Deque<E>::eraseFront()
+{
+	holder = header->next;  
+	E temp = holder->elem;
+	header->next = holder->next;
+	holder = header->next;
+	delete holder->prev;
+	holder->prev = header;
+	n--;					            // one fewer element
+	return temp;
+}
+
+//*********************************************************************************
+// Erase the back
+//
+//*********************************************************************************
+template <typename E>
+const E& Deque<E>::eraseBack()
+{
+	holder = trailer->prev;             // node to be deleted
+	E temp = holder->elem;
+	trailer->prev = holder->prev;
+	holder = trailer->prev;
+	delete trailer->next;
+	holder->next = trailer;
+	n--;					             // one fewer element
+	return temp;
+}
+
+//*********************************************************************************
+// What's in front?
+//
+//*********************************************************************************
+template <typename E>
+const E& Deque<E>::front() const 
+{ 
+	return header->next->elem;
+}
+
+//*********************************************************************************
+// What's in Back
+//
+//*********************************************************************************
+template <typename E>
+const E& Deque<E>::back() const
+{
+	return trailer->prev->elem;
+}
+
+//*********************************************************************************
+// How big are we?
+//
+//*********************************************************************************
+template <typename E>
+int Deque<E>::size() const
+{		
+	return n;
+}
+
+//*********************************************************************************
+// Is it empty?
+//
+//*********************************************************************************
+template <typename E>
+bool Deque<E>::empty() const
+{			
+	return (n == 0);
+}
+#endif
