@@ -1,0 +1,21 @@
+//*********************************************************************************
+// Implementation for a Queue adapted from a deque
+//
+//
+// Last modified 10/22/19 Howard Akers
+//*********************************************************************************
+#include "Deque.cpp"
+template <typename E>
+class Queue 
+{
+public:
+	Queue();			//constructor
+	~Queue();			//destructor
+	void enqueue(const E& e);
+	const E& dequeue(); //throw(QueueEmpty);  //note that the use of exceptions is optional
+	const E& front() const; //throw(QueueEmpty); //note that the use of exceptions is optional
+	int size() const;
+	bool empty() const;
+private:
+	Deque<E> D;
+};
