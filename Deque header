@@ -1,0 +1,37 @@
+#ifndef DEQUE_H
+#define DEQUE_H
+//*********************************************************************************
+// Node header for a deque	
+//
+//
+// Last modified 10/22/19 Howard Akers
+//*********************************************************************************
+
+template <typename E>
+class Deque {
+public:
+	struct Node {				// a node of the list
+		E elem;				    // element value
+		Node* prev;				// previous in list
+		Node* next;				// next in list
+		friend class Deque<E>;
+	};
+public:
+	Deque();			//constructor
+	~Deque();			//destructor
+	void insertFront(const E& e);
+	void insertBack(const E& e);
+	const E& eraseFront(); // throw(DequeEmpty);	//note that the use of exceptions is optional
+	const E& eraseBack(); // throw(DequeEmpty);	//note that the use of exceptions is optional
+	const E& front() const; // throw(DequeEmpty);	//note that the use of exceptions is optional
+	const E& back() const; // throw(DequeEmpty);	//note that the use of exceptions is optional
+	int size() const;
+	bool empty() const;
+
+private:					  // data members
+	int     n;				  // number of items
+	Node*   header;			  // head-of-list sentinel
+	Node*   trailer;	      // tail-of-list sentinel
+	Node*   holder;           // holds something before it's deleted
+};
+#endif
