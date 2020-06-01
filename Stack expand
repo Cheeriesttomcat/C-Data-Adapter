@@ -1,0 +1,9 @@
+//*********************************************************************************
+// Expand file for a Stack
+//
+//
+// Last modified 10/22/19 Howard Akers
+//*********************************************************************************
+#include "Stack.cpp"
+using namespace std;
+template class Stack<int>;
