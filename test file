@@ -1,0 +1,64 @@
+//*********************************************************************************
+// Test file	
+//
+//
+// Last modified 10/24/19 Howard Akers
+//*********************************************************************************
+#include <iostream>
+#include "Queue.h"
+#include "Deque.h"
+#include "Stack.h"
+
+int main()
+{
+	std::cout << "Working with Queue\n";
+	int i1 = 1;
+	int i2 = 7;
+	int i3 = 5;
+	int i4 = 8;
+	Queue<int> s;
+	s.enqueue(i1);
+	s.enqueue(i2);
+	s.enqueue(i3);
+	s.enqueue(i4);
+	std::cout << s.front();
+	std::cout << "\n";
+	std::cout << s.dequeue();
+	std::cout << "\n";
+	std::cout << s.front();
+	std::cout << "\n";
+	std::cout << s.dequeue();
+	std::cout << "\n";
+	std::cout << s.front();
+	std::cout << "\n";
+	std::cout << s.dequeue();
+	std::cout << "\n";
+	std::cout << s.front();
+	std::cout << "\n";
+	std::cout << s.dequeue();
+	std::cout << "\n";
+	std::cout << "Working with Stacks\n";
+	Stack<int> i;
+	i.push(i1);
+	i.push(i2);
+	i.push(i3);
+	i.push(i4);
+	std::cout << i.top();
+	std::cout << "\n";
+	std::cout << i.pop();
+	std::cout << "\n";
+	std::cout << i.top();
+	std::cout << "\n";
+	std::cout << i.pop();
+	std::cout << "\n";
+	std::cout << i.top();
+	std::cout << "\n";
+	std::cout << i.pop();
+	std::cout << "\n";
+	std::cout << i.top();
+	std::cout << "\n";
+	std::cout << i.pop();
+	std::cout << "\n";
+	system("PAUSE");
+	exit(EXIT_SUCCESS);
+}
