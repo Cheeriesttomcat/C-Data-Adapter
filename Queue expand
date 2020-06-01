@@ -1,0 +1,9 @@
+//*********************************************************************************
+// Expand file for a Queue
+//
+//
+// Last modified 10/22/19 Howard Akers
+//*********************************************************************************
+#include "Queue.cpp"
+using namespace std;
+template class Queue<int>;
