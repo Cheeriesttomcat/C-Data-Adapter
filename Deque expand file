@@ -1,0 +1,9 @@
+//*********************************************************************************
+// Expand file for a deque	
+//
+//
+// Last modified 10/22/19 Howard Akers
+//*********************************************************************************
+#include "Deque.cpp"
+using namespace std;
+template class Deque<int>;
